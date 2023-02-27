@@ -43,10 +43,21 @@ std::vector<bool> xor_vectors(std::vector<bool> a, std::vector<bool> b) {
   return result;
 }
 
+
 void print_vector_to_stdout(std::vector<bool> vec) {
   for (int i = 0; i < vec.size(); i++) {
     std::cout << (int) vec[i];
   }
+}
+
+void print_vector_to_stdout(std::vector<bool> vec, int m) {
+  if (vec.size() < m) {
+    int diff = m - vec.size();
+    for (int i = 0; i < diff; i++) {
+      std::cout << "0";
+    }
+  }
+  print_vector_to_stdout(vec);
 }
 
 std::vector<bool> strip_trailing_zeros(std::vector<bool> poly) {
@@ -157,11 +168,11 @@ int main(int argc, char const *argv[]) {
 
       std::vector<bool> result = polynomial_multiply(a, b, irred_poly);
 
-      print_vector_to_stdout(a);
+      print_vector_to_stdout(a, m);
       std::cout << " x ";
-      print_vector_to_stdout(b);
+      print_vector_to_stdout(b, m);
       std::cout << " = ";
-      print_vector_to_stdout(result);
+      print_vector_to_stdout(result, m);
       std::cout << std::endl;
     }
   }
